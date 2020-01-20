@@ -22,9 +22,7 @@ dnl   GP_CAMLIB([ptp],[unlisted])
 dnl   GP_CAMLIB([ptp2])
 dnl   [...]
 dnl   GP_CAMLIB([toshiba])
-dnl   GP_CAMLIBS_DEFINE([camlibs])
-dnl
-dnl The camlibs basedir parameter of GP_CAMLIBS_DEFINE is optional.
+dnl   GP_CAMLIBS_DEFINE()
 dnl
 dnl ####################################################################
 dnl
@@ -55,7 +53,6 @@ AC_PROG_SED
 GP_PROG_CMP
 GP_PROG_DIFF
 GP_PROG_SORT
-m4_define_default([gp_camlib_srcdir], [camlibs])dnl
 m4_define_default([gp_camlibs], [])dnl
 m4_define_default([gp_camlibs_unlisted], [])dnl
 m4_define_default([gp_camlibs_outdated], [])dnl
@@ -111,17 +108,6 @@ dnl
 AC_DEFUN([GP_CAMLIBS_DEFINE],[dnl
 AC_REQUIRE([GP_CAMLIBS_INIT])dnl
 m4_pattern_allow([m4_strip])dnl
-m4_ifval([$1],[m4_define([gp_camlib_srcdir],[$1])])dnl
-dnl for camlib in m4_strip(gp_camlibs) m4_strip(gp_camlibs_unlisted)
-dnl do
-dnl 	if test -d "$srcdir/m4_strip(gp_camlib_srcdir)/$camlib"; then :; else
-dnl 		AC_MSG_ERROR([
-dnl * Fatal:
-dnl * Source subdirectory for camlib \`$camlib' not found in
-dnl * directory \`$srcdir/m4_strip(gp_camlib_srcdir)/'
-dnl ])
-dnl 	fi
-dnl done
 AC_MSG_CHECKING([which camlibs to compile])
 dnl Yes, that help output won't be all that pretty, but we at least
 dnl do not have to edit it by hand.
