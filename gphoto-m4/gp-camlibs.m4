@@ -28,8 +28,32 @@ dnl The camlibs basedir parameter of GP_CAMLIBS_DEFINE is optional.
 dnl
 dnl ####################################################################
 dnl
+AC_DEFUN([GP_PROG_CMP],[dnl
+AC_PATH_PROG([CMP],[cmp])dnl
+AC_ARG_VAR([CMP], [the implementation of cmp to use])dnl
+])dnl
+dnl
+dnl ####################################################################
+dnl
+AC_DEFUN([GP_PROG_DIFF],[dnl
+AC_PATH_PROG([DIFF],[diff])dnl
+AC_ARG_VAR([DIFF], [the implementation of diff to use])dnl
+])dnl
+dnl
+dnl ####################################################################
+dnl
+AC_DEFUN([GP_PROG_SORT],[dnl
+AC_PATH_PROG([SORT],[sort])dnl
+AC_ARG_VAR([SORT], [the implementation of sort to use])dnl
+])dnl
+dnl
+dnl ####################################################################
+dnl
 AC_DEFUN([GP_CAMLIBS_INIT],[dnl
 AC_BEFORE([$0],[GP_CAMLIB])dnl
+GP_PROG_CMP
+GP_PROG_DIFF
+GP_PROG_SORT
 m4_define_default([gp_camlib_srcdir], [camlibs])dnl
 m4_define_default([gp_camlibs], [])dnl
 m4_define_default([gp_camlibs_unlisted], [])dnl

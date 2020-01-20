@@ -140,11 +140,11 @@ CLEANFILES += all-src-camlibs all-def-camlibs
 all-local: Makefile
 	@:; \
 	(for x in $(EXTRA_LTLIBRARIES) template.la; do echo "$$(basename "$$x" ".la")"; done) \
-		| sort > all-src-camlibs; \
+		| $(SORT) > all-src-camlibs; \
 	(for x in $(ALL_DEFINED_CAMLIBS); do echo "$$x"; done) \
-		| sort > all-def-camlibs; \
-	if cmp all-def-camlibs all-src-camlibs; then :; else \
-		diff -u all-def-camlibs all-src-camlibs; \
+		| $(SORT) > all-def-camlibs; \
+	if $(CMP) all-def-camlibs all-src-camlibs; then :; else \
+		$(DIFF) -u all-def-camlibs all-src-camlibs; \
 		echo "List of camlibs in configure.ac is out of date."; \
 		echo "Have a developer update it using \"make -C camlibs print-camlibs\"."; \
 		exit 1; \
