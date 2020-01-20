@@ -14,6 +14,10 @@ dnl
 dnl   GP_CAMLIB([canon])
 dnl   GP_CAMLIB([casio])
 dnl   [...]
+dnl   AM_COND_IF([BUILD_LUMIX], [dnl
+dnl     GP_CAMLIB([lumix])dnl
+dnl   ])
+dnl   [...]
 dnl   GP_CAMLIB([ptp],[unlisted])
 dnl   GP_CAMLIB([ptp2])
 dnl   [...]
