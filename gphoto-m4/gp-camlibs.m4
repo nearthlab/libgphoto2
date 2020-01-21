@@ -49,7 +49,6 @@ dnl ####################################################################
 dnl
 AC_DEFUN([GP_CAMLIBS_INIT],[dnl
 AC_BEFORE([$0],[GP_CAMLIB])dnl
-AC_PROG_SED
 GP_PROG_CMP
 GP_PROG_DIFF
 GP_PROG_SORT
@@ -138,14 +137,14 @@ else
 	# and add the explicitly defined ones later
 	if echo "$camlibs" | grep "^all," > /dev/null; then
 		INSTALL_THESE_CAMLIBS_BASE="$ALL_DEFAULT_CAMLIBS"
-		camlibs="$(echo "$camlibs" | $(SED) 's/^all,//')"
+		camlibs="$(echo "$camlibs" | sed 's/^all,//')"
 	fi
 	if echo "$camlibs" | grep "outdated" > /dev/null; then
 		INSTALL_THESE_CAMLIBS_BASE="$INSTALL_THESE_CAMLIBS_BASE m4_strip(gp_camlibs_outdated)"
-		camlibs="$(echo "$camlibs" | $(SED) 's/outdated[,]*//')"
+		camlibs="$(echo "$camlibs" | sed 's/outdated[,]*//')"
 	fi
 
-	# camlibs=$(echo $camlibs | $(SED) 's/,/ /g')
+	# camlibs=$(echo $camlibs | sed 's/,/ /g')
 	IFS_save="$IFS"
 	IFS=",$IFS"
 	# Walk through enumeration of camlibs given by user and add them to list
