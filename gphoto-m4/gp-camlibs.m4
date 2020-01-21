@@ -49,6 +49,7 @@ dnl ####################################################################
 dnl
 AC_DEFUN([GP_CAMLIBS_INIT],[dnl
 AC_BEFORE([$0],[GP_CAMLIB])dnl
+AC_PROG_GREP
 AC_PROG_SED
 GP_PROG_CMP
 GP_PROG_DIFF
@@ -136,11 +137,11 @@ if test "$camlibs" = "all"; then
 else
 	# If the string starts with "all,", we start with the default list
 	# and add the explicitly defined ones later
-	if echo "$camlibs" | grep "^all," > /dev/null; then
+	if echo "$camlibs" | ${GREP} "^all," > /dev/null; then
 		INSTALL_THESE_CAMLIBS_BASE="$ALL_DEFAULT_CAMLIBS"
 		camlibs="$(echo "$camlibs" | ${SED} 's/^all,//')"
 	fi
-	if echo "$camlibs" | grep "outdated" > /dev/null; then
+	if echo "$camlibs" | ${GREP} "outdated" > /dev/null; then
 		INSTALL_THESE_CAMLIBS_BASE="$INSTALL_THESE_CAMLIBS_BASE m4_strip(gp_camlibs_outdated)"
 		camlibs="$(echo "$camlibs" | ${SED} 's/outdated[,]*//')"
 	fi
