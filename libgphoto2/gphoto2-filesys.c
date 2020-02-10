@@ -977,8 +977,8 @@ gp_filesystem_list_files (CameraFilesystem *fs, const char *folder,
 
 		/* set it to non-dirty now, so we do not recurse via _append. */
 		f->files_dirty = 0;
-		CR (fs->file_list_func (fs, folder, list,
-					fs->data, context));
+		//CR (fs->file_list_func (fs, folder, list,
+		//			fs->data, context));
 
 		CR (count = gp_list_count (list));
 		for (y = 0; y < count; y++) {
